@@ -5,7 +5,7 @@ const app = express();
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/ssd', express.static('/home/pi/SSD'));
+app.use('/ssd', express.static(path.join(__dirname,'/home/pi/SSD')));
 
 
 const PORT = 3075;
