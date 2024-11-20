@@ -22,7 +22,7 @@ app.get('/getMovies', (req, res) => {
 function findMovies() {
     const moviesDir = '/home/pi/SSD';
     const movies = [];
-    const filePath = '';
+    let filePath = '';
 
     fs.readdirSync(moviesDir, { withFileTypes: true }).forEach(dirent => {
         if (dirent.isDirectory()) {
@@ -31,8 +31,7 @@ function findMovies() {
                     filePath = path.join('movies', dirent.name, file);
                 }               
             });
-            const moviePath = path.join('movies', dirent.name);
-            movies.push({ title: dirent.name, path: moviePath, filePath: filePath});
+            movies.push({ title: dirent.name, filePath: filePath});
         }
     });
 
