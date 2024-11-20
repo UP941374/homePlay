@@ -30,7 +30,7 @@ function findMovies() {
         if (dirent.isDirectory()) {
             fs.readdirSync(path.join(moviesDir, dirent.name)).forEach(file => {
                 if (file.endsWith('.mp4')) {
-                    filePath = path.join('ssd',moviesDir, dirent.name, file);
+                    filePath = path.join(moviesDir, dirent.name, file);
                 }               
             });
             movies.push({ title: dirent.name, filePath: filePath});
