@@ -6,7 +6,15 @@ async function getMovies() {
         }
         let movies = await response.json();
         console.log(movies);
-        // You can add code here to display the movies on the page
+        let moviesHandler = document.getElementById('movies');
+        movies.forEach(movie => {
+            let movieElement = document.createElement('div');
+            let movieLink = document.createElement('a');
+            movieLink.href = movie.path;
+            movieLink.textContent = movie.title;
+            movieElement.appendChild(movieLink);
+            moviesHandler.appendChild(movieElement);
+        });
     } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
     }
