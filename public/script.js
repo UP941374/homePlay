@@ -6,12 +6,14 @@ async function getMovies() {
         }
         let movies = await response.json();
         console.log(movies);
-        
+
         let moviesHandler = document.getElementById('movies');
         movies.forEach(movie => {
             let movieElement = document.createElement('div');
+            movieElement.addEventListener('click', () => {
+                playMovie(movie.filePath);
+            });
             let movieLink = document.createElement('a');
-            movieLink.href = movie.path;
             movieLink.textContent = movie.title;
             movieElement.appendChild(movieLink);
             moviesHandler.appendChild(movieElement);
@@ -23,3 +25,8 @@ async function getMovies() {
 
 // Call the function to fetch movies
 getMovies();
+
+function playMovie(path){
+    console.log(path);
+    
+}
