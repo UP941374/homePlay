@@ -5,8 +5,6 @@ const app = express();
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/ssd', express.static(path.join(__dirname,'/home/pi/SSD')));
-
 
 const PORT = 3075;
 
@@ -21,6 +19,12 @@ app.get('/getMovies', (req, res) => {
     res.json(movies);
 });
 
+app.get('/getMovie', (req, res) => {
+    res.sendFile(
+        path.join(__dirname, './home/pi/SSD', req.query.movie)
+   )
+});
+
 function findMovies() {
     const moviesDir = '/home/pi/SSD';
     const movies = [];
@@ -30,7 +34,7 @@ function findMovies() {
         if (dirent.isDirectory()) {
             fs.readdirSync(path.join(moviesDir, dirent.name)).forEach(file => {
                 if (file.endsWith('.mp4')) {
-                    filePath = path.join(moviesDir, dirent.name, file);
+                    filePath = path.join(__dirname, moviesDir, dirent.name, file);
                 }               
             });
             movies.push({ title: dirent.name, filePath: filePath});
