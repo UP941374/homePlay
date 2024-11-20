@@ -22,15 +22,17 @@ app.get('/getMovies', (req, res) => {
 function findMovies() {
     const moviesDir = '/home/pi/SSD';
     const movies = [];
-    const moviesDesc = [];
+    const filePath = '';
 
     fs.readdirSync(moviesDir, { withFileTypes: true }).forEach(dirent => {
         if (dirent.isDirectory()) {
             fs.readdirSync(path.join(moviesDir, dirent.name)).forEach(file => {
-                moviesDesc.push(file);
+                if (file.endsWith('.mp4')) {
+                    filePath = path.join('movies', dirent.name, file);
+                }               
             });
             const moviePath = path.join('movies', dirent.name);
-            movies.push({ title: dirent.name, path: moviePath, desc: moviesDesc });
+            movies.push({ title: dirent.name, path: moviePath, filePath: filePath});
         }
     });
 

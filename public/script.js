@@ -6,6 +6,7 @@ async function getMovies() {
         }
         let movies = await response.json();
         console.log(movies);
+        
         let moviesHandler = document.getElementById('movies');
         movies.forEach(movie => {
             let movieElement = document.createElement('div');
