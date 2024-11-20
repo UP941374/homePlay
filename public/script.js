@@ -27,6 +27,24 @@ async function getMovies() {
 getMovies();
 
 function playMovie(path){
-    console.log(path);
+    document.body.innerHTML = '';
+     // Create a video element
+     let videoElement = document.createElement('video');
+     videoElement.setAttribute('controls', 'controls');
+     videoElement.setAttribute('autoplay', 'autoplay');
+     videoElement.style.width = '100vw';
+     videoElement.style.height = '100vh';
+ 
+     // Create a source element
+     let sourceElement = document.createElement('source');
+     sourceElement.setAttribute('src', path);
+     sourceElement.setAttribute('type', 'video/mp4');
+ 
+     // Append the source to the video element
+     videoElement.appendChild(sourceElement);
+ 
+     // Append the video element to the body
+     document.body.appendChild(videoElement);
+
     
 }
